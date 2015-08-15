@@ -1,4 +1,10 @@
-package com.console.javaconsole;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.javaconsole;
+
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -14,14 +20,17 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 import javax.swing.text.DefaultCaret;
 
-public class console {
+import com.javaconsole.javaconsole;
+import static com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil.close;
+import java.awt.event.WindowEvent;
 
-    public static boolean ifAnswer;
-    public static String usrAnswer;
+/**
+ *
+ * @author dalen
+ */
+public class gui  {
     
-    
-    
-     public static void gui(int x, int y) {
+    public static void gui(int x, int y){
         
         JFrame frame = new JFrame("Console");
         JLabel title = new JLabel("Console");
@@ -36,7 +45,7 @@ public class console {
         JPanel bottomPanel = new JPanel(new BorderLayout());
         
         
-        TextAreaOutputStream taos = TextAreaOutputStream.getInstance(console);
+        com.javaconsole.TextAreaOutputStream taos = com.javaconsole.TextAreaOutputStream.getInstance(console);
         
         frame.add(outerPanel);
         
@@ -81,45 +90,30 @@ public class console {
                 
                 String printUsrInput = usrInput.getText();
                 
-                usrAnswer = printUsrInput;
-                System.out.println(usrAnswer);
-                ifAnswer = true;
+                jconsolevar.usrAnswer = printUsrInput;
+                System.out.println(jconsolevar.usrAnswer);
+                jconsolevar.ifAnswer = true;
                 
                 usrInput.setText("");
+                
+                if(jconsolevar.consoleClose == true) {
+                    
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                    
+                    jconsolevar.consoleClose = false;
+                }
+                
                 
                 
                 
             }
         });
+        
+        
 
         
     }
-     
-    public static void scan() throws InterruptedException  {
-		
-		usrAnswer = (" ");
-                
-                ifAnswer = false;
-                
-                scanCheck();
-                
-                
-                
-	}
-        
-        public static void scanCheck() throws InterruptedException {
-                
-                    
-                if (ifAnswer == true) {
-                    
-                    
-                }
-                else {
-                    Thread.sleep(10);
-                    scanCheck();
-                    
-                }
-                
-            }
+    
+    
     
 }

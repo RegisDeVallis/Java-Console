@@ -1,4 +1,4 @@
-package com.console.javaconsole;
+package com.javaconsole;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
